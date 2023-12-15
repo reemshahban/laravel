@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Exams;
 use Illuminate\Http\Request;
+use App\Models\Exam;
 
-class examController extends Controller
+class ExamController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-      return view ('exams.index');
+        $exams = Exam::all();
+        return view ('exams.index')->with('exams', $exams);
     }
 
     /**
@@ -23,43 +24,37 @@ class examController extends Controller
         return view ('exams.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        Exam::create($input);
+        return redirect('exam')->with('flash_message', 'Exam Added!');  
+    }
+    
+    public function show($id)
+    {
+        $exam = Exam::find($id);
+        return view('exams.show')->with('exam', $exam);
+    }
+    
+    public function edit($id)
+    {
+        $exam = Exam::find($id);
+        return view('exams.edit')->with('exams', $exam);
+    }
+  
+    public function update(Request $request, $id)
+    {
+        $exam = Exam::find($id);
+        $input = $request->all();
+        $exam->update($input);
+        return redirect('exam')->with('flash_message', 'Exam Updated!');  
+    }
+   
+    public function destroy($id)
+    {
+        Exam::destroy($id);
+        return redirect('exam')->with('flash_message', 'Exam deleted!');  
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Exams $exams)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Exams $exams)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Exams $exams)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Exams $exams)
-    {
-        //
-    }
 }

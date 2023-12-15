@@ -5,11 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Exams extends Model
+class Exam extends Model
 {
-    protected $table = 'exam';
+    protected $table = 'exams';
     protected $primaryKey = 'id';
-    protected $fillable = ['name','description','choosed/not'];
-
-
+    protected $fillable = ['name'];
 }

@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\examController;
-
+use App\Http\Controllers\ExamController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +13,8 @@ use App\Http\Controllers\examController;
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+});
 
-
-Route::resource('exams', examController::class);
-
+Route::resource('exam', ExamController::class);
