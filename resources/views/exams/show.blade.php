@@ -9,6 +9,8 @@
  
         <div class="card-body">
         <h5 class="card-title">Name : {{ $exam->name }}</h5>
+        <h5 class="card-title">Description : {{ $exam->description }}</h5>
+        <h5 class="card-title">Available : {{ $exam->isChoosed?'no':'yes' }}</h5>
 
   </div>
        

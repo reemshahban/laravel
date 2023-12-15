@@ -7,9 +7,6 @@
                 <div class="card">
                     <div class="card-header">Exams</div>
                     <div class="card-body">
-                        <a href="{{ url('/exam/create') }}" class="btn btn-success btn-sm" title="Add New Exam">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add New
-                        </a>
                         <br/>
                         <br/>
                         <div class="table-responsive">
@@ -29,14 +26,18 @@
                                         <td>{{ $item->isChoosed?'no':'yes' }}</td>
  
                                         <td>
-                                            <a href="{{ url('/exam/' . $item->id) }}" title="View Student"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                            <a href="{{ url('/exam/' . $item->id . '/edit') }}" title="Edit Student"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
- 
-                                            <form method="POST" action="{{ url('/exam' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
-                                                {{ method_field('DELETE') }}
-                                                {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Exam" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
-                                            </form>
+                                            @if(!$item->isChoosed)
+                                            <form action="{{ url('student/' .$item->id) }}" method="post">
+                                                {!! csrf_field() !!}
+                                                @method("PATCH")
+                                                    <input type="hidden" name="id" id="id" value="{{$item->id}}" id="id" />
+                                                    <input type="hidden"  name="name" id="name" value="{{$item->name}}" class="form-control">
+                                                    <input type="hidden"  name="description" id="name" value="{{$item->description}}" class="form-control">
+                                                    <input type="hidden"  name="isChoosed" id="name" value="1" class="form-control">
+                                                    <button type="submit" class="btn btn-primary btn-sm" title="Choose Exam" > Choose</button>
+                                                </form>
+                                                @else
+                                                @endif
                                         </td>
                                     </tr>
                                 @endforeach

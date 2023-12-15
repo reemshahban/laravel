@@ -16,6 +16,13 @@ class ExamController extends Controller
         return view ('exams.index')->with('exams', $exams);
     }
 
+
+    public function student()
+    {
+        $exams = Exam::all();
+        return view ('exams.index')->with('exams', $exams);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -27,6 +34,7 @@ class ExamController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
+        $input['isChoosed']=false; 
         Exam::create($input);
         return redirect('exam')->with('flash_message', 'Exam Added!');  
     }

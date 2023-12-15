@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExamController;
+use App\Http\Controllers\StudentController;
+use App\Models\Exam;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,3 +21,11 @@ Route::get('/', function () {
 });
 
 Route::resource('exam', ExamController::class);
+/*Route::get('student', function ()
+{
+    $exams = Exam::all();
+    return view ('exams.student')->with('exams', $exams);
+});*/
+
+Route::resource('student', StudentController::class);
+

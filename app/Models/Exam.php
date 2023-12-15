@@ -9,5 +9,5 @@ class Exam extends Model
 {
     protected $table = 'exams';
     protected $primaryKey = 'id';
-    protected $fillable = ['name'];
+    protected $fillable = ['name','description','isChoosed'];
 }
