@@ -15,25 +15,27 @@
             background-color: #f4f4f4;
         }
 
-        /* Additional styling for login and register buttons */
         .auth-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
+            position: relative;
         }
 
         .welcome-message {
             font-size: 2rem;
             font-weight: bold;
             margin-bottom: 1rem;
+            margin-top: -300px; /* Adjusted margin */
         }
 
         .auth-buttons {
             display: flex;
             justify-content: center;
             margin-top: 1rem;
+            margin-bottom: -20px; /* Adjusted margin */
         }
 
         .auth-buttons a {
@@ -57,18 +59,42 @@
         .auth-buttons a:hover {
             opacity: 0.8;
         }
+
+        .documentation {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            font-size: 1.5rem; /* Increased font size */
+            color: #555;
+            text-align: left; /* Adjusted text alignment to left */
+            max-width: 250px;
+            white-space: pre-line;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 0.5rem;
+            background-color: #cecaca;
+            box-shadow: 0px 0px 10px 0px #aaa;
+        }
+
+        .documentation b {
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
     <div class="auth-container">
-        <div class="welcome-message">Welcome</div>
+        <div class="welcome-message">Welcome!!</div>
         
         <div class="auth-buttons">
             <a href="{{ route('login') }}" class="login-btn">Log in</a>
             @if (Route::has('register'))
                 <a href="{{ route('register') }}" class="register-btn">Register</a>
             @endif
+        </div>
+
+        <div class="documentation">
+            <b>Documentation:</b><br>This system allows adding, deleting, and modifying exams<br>so that they can be displayed to the user,<br>and the user can choose between them.
         </div>
     </div>
 
